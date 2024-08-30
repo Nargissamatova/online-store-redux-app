@@ -1,9 +1,17 @@
 import { Button } from "react-bootstrap";
-import { useAppSelector } from "./hooks/hooks";
+import { useAppDispatch, useAppSelector } from "./hooks/hooks";
+import { useEffect } from "react";
+import { fetchProducts } from "./store/productSlice";
 
 function App() {
   const products = useAppSelector((state) => state.products.products);
+  const dispatch = useAppDispatch();
   console.log("products", products);
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
   return (
     <>
       <div>App will be here</div>
